@@ -84,15 +84,23 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
     display:flex; align-items:center; justify-content:center; z-index:9999;
 }
 .popup-box {
-    background:#1a1a1a; padding:30px; border-radius:15px; text-align:center; max-width:450px; color:#fff;
+    background:#1a1a1a; padding:40px; border-radius:20px; text-align:center; max-width:500px; color:#fff;
+    box-shadow:0 0 40px #ff4500, 0 0 60px #ff8c00;
+    transform: translateY(-200px); opacity:0;
+    animation: slideIn 0.5s forwards;
+}
+@keyframes slideIn {
+    to { transform: translateY(0); opacity:1; }
 }
 .popup-box button {
-    margin:10px; padding:12px 30px; border:none; border-radius:10px; font-weight:bold; cursor:pointer;
+    margin:12px; padding:15px 35px; border:none; border-radius:12px; font-weight:bold; cursor:pointer;
     font-size:1vw;
 }
 .popup-box .cancel { background:#555; color:#fff; }
 .popup-box .paypal { background:linear-gradient(45deg,#ff4500,#ff8c00); color:#fff; }
 .popup-box .robux { background:linear-gradient(45deg,#00ff7f,#00ff9f); color:#000; }
+.popup-box ul { text-align:left; margin:15px 0; }
+.popup-box ul li { margin:8px 0; }
 </style>
 </head>
 <body>
@@ -166,7 +174,7 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
     </div>
 
     <!-- Discord verify -->
-    <a id="discord-btn" href="YOUR_DISCORD_INVITE" target="_blank">VERIFY PURCHASE ON DISCORD</a>
+    <span id="discord-btn" class="buy-btn" onclick="showVerification()">VERIFY PURCHASE ON DISCORD</span>
     <p class="footer">💬 DM STAFF IF SOMETHING DIDN'T WORK | ⚠️ Prices may increase anytime</p>
 </div>
 
@@ -185,12 +193,6 @@ for(let i=0;i<80;i++){
     particlesContainer.appendChild(p);
 }
 
-// ===== Discord button glow =====
-const discordBtn = document.getElementById('discord-btn');
-setInterval(()=>{
-    discordBtn.style.boxShadow = `0 0 20px rgba(114,137,218,${Math.random()})`;
-},500);
-
 // ===== PAYMENT POPUP =====
 function choosePayment(rank){
     let overlay = document.createElement('div');
@@ -200,6 +202,10 @@ function choosePayment(rank){
     box.className = 'popup-box';
     box.innerHTML = `<h2>Buy ${rank}</h2>
                      <p>Select your payment method:</p>
+                     <ul>
+                        <li>Gamepass / Robux price</li>
+                        <li>PayPal: $${rank==='VIP'?1:rank==='SuperVIP'?2:rank==='Legend'?5:rank==='UltraLegend'?10:25}</li>
+                     </ul>
                      <button class="paypal" onclick="pay('PayPal','${rank}')">PayPal</button>
                      <button class="robux" onclick="pay('Robux','${rank}')">Robux</button>
                      <br><br>
@@ -209,6 +215,7 @@ function choosePayment(rank){
     document.body.appendChild(overlay);
 }
 
+// ===== PAY FUNCTION =====
 function pay(method, rank){
     const links = {
         VIP:'http://paypal.me/wahdkhona/1',
@@ -221,13 +228,32 @@ function pay(method, rank){
     if(method==='PayPal'){
         window.open(links[rank],'_blank');
     } else {
-        alert('Robux purchases must go through Roblox. Then DM staff for role.');
+        alert('Robux purchases must go through Roblox gamepasses. Then DM staff for role.');
     }
 
-    // Remove popup
     document.querySelectorAll('.popup-overlay')[0].remove();
 }
-</script>
 
+// ===== VERIFICATION POPUP =====
+function showVerification(){
+    let overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+
+    let box = document.createElement('div');
+    box.className = 'popup-box';
+    box.innerHTML = `<h2>Verify Your Purchase</h2>
+                     <p>After completing your payment, follow these steps:</p>
+                     <ol style="text-align:left; margin-left:20px;">
+                       <li>Join our Discord server: <a href="https://discord.gg/9wVDsXAN" target="_blank">Click here</a></li>
+                       <li>Go to the <b>#rank-shop</b> channel</li>
+                       <li>Drop a screenshot of your PayPal payment</li>
+                       <li>Wait for staff to assign your rank</li>
+                     </ol>
+                     <button class="cancel" onclick="this.parentElement.parentElement.remove()">Close</button>`;
+    
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+}
+</script>
 </body>
 </html>
