@@ -36,6 +36,7 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
     display:inline-block; margin-top:15px; color:#fff; padding:12px 25px;
     border-radius:8px; font-weight:bold; background:#ff4500;
     box-shadow:0 0 15px rgba(255,69,0,0.5); transition: transform 0.2s, box-shadow 0.2s;
+    cursor:pointer;
 }
 .buy-btn:hover { transform:scale(1.1); box-shadow:0 0 30px #ff4500; }
 
@@ -76,6 +77,21 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
     background:rgba(255,255,255,0.5); animation: float 10s linear infinite;
 }
 @keyframes float { 0% { transform:translateY(0) } 100% { transform:translateY(-110vh) } }
+
+/* ===== POPUP ===== */
+.popup-overlay {
+    position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8);
+    display:flex; align-items:center; justify-content:center; z-index:9999;
+}
+.popup-box {
+    background:#1a1a1a; padding:30px; border-radius:15px; text-align:center; max-width:400px; color:#fff;
+}
+.popup-box button {
+    margin:10px; padding:10px 20px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;
+}
+.popup-box .cancel { background:#555; color:#fff; }
+.popup-box .paypal { background:#ff4500; color:#fff; }
+.popup-box .robux { background:#00ff7f; color:#000; }
 </style>
 </head>
 <body>
@@ -97,7 +113,7 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
             <li>🎁 Small in-game bonus</li>
             <li>💬 VIP chat access</li>
         </ul>
-        <a class="buy-btn" href="http://paypal.me/wahdkhona/1" target="_blank">BUY VIP</a>
+        <span class="buy-btn" onclick="choosePayment('VIP')">BUY VIP</span>
     </div>
 
     <!-- SuperVIP -->
@@ -109,7 +125,7 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
             <li>😄 Exclusive emoji</li>
             <li>🎧 Private voice access</li>
         </ul>
-        <a class="buy-btn" href="http://paypal.me/wahdkhona/2" target="_blank">BUY SuperVIP</a>
+        <span class="buy-btn" onclick="choosePayment('SuperVIP')">BUY SuperVIP</span>
     </div>
 
     <!-- Legend -->
@@ -121,7 +137,7 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
             <li>🧿 Rare in-game item</li>
             <li>🚀 Early update access</li>
         </ul>
-        <a class="buy-btn" href="http://paypal.me/wahdkhona/5" target="_blank">BUY Legend</a>
+        <span class="buy-btn" onclick="choosePayment('Legend')">BUY Legend</span>
     </div>
 
     <!-- UltraLegend -->
@@ -133,7 +149,7 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
             <li>🗺️ Exclusive game area</li>
             <li>🏅 Special badge emoji</li>
         </ul>
-        <a class="buy-btn" href="http://paypal.me/wahdkhona/10" target="_blank">BUY UltraLegend</a>
+        <span class="buy-btn" onclick="choosePayment('UltraLegend')">BUY UltraLegend</span>
     </div>
 
     <!-- Supreme -->
@@ -145,7 +161,7 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
             <li>📣 Special shoutouts</li>
             <li>🧪 Access to test updates</li>
         </ul>
-        <a class="buy-btn" href="http://paypal.me/wahdkhona/25" target="_blank">BUY Supreme</a>
+        <span class="buy-btn" onclick="choosePayment('Supreme')">BUY Supreme</span>
     </div>
 
     <!-- Discord verify -->
@@ -173,6 +189,43 @@ const discordBtn = document.getElementById('discord-btn');
 setInterval(()=>{
     discordBtn.style.boxShadow = `0 0 20px rgba(114,137,218,${Math.random()})`;
 },500);
+
+// ===== PAYMENT POPUP =====
+function choosePayment(rank){
+    let overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+
+    let box = document.createElement('div');
+    box.className = 'popup-box';
+    box.innerHTML = `<h2>Buy ${rank}</h2>
+                     <p>Select your payment method:</p>
+                     <button class="paypal" onclick="pay('PayPal','${rank}')">PayPal</button>
+                     <button class="robux" onclick="pay('Robux','${rank}')">Robux</button>
+                     <br><br>
+                     <button class="cancel" onclick="this.parentElement.parentElement.remove()">Cancel</button>`;
+    
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+}
+
+function pay(method, rank){
+    const links = {
+        VIP:'http://paypal.me/wahdkhona/1',
+        SuperVIP:'http://paypal.me/wahdkhona/2',
+        Legend:'http://paypal.me/wahdkhona/5',
+        UltraLegend:'http://paypal.me/wahdkhona/10',
+        Supreme:'http://paypal.me/wahdkhona/25'
+    };
+
+    if(method==='PayPal'){
+        window.open(links[rank],'_blank');
+    } else {
+        alert('Robux purchases must go through Roblox. Then DM staff for role.');
+    }
+
+    // Remove popup after click
+    document.querySelectorAll('.popup-overlay')[0].remove();
+}
 </script>
 
 </body>
