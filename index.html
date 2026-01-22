@@ -115,62 +115,62 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
 
     <!-- VIP -->
     <div class="rank-card vip">
-        <h2>🎮 VIP — $1</h2>
+        <h2>🎮 VIP — $1 / 50 Robux</h2>
         <p><del>$3 / 150 Robux</del> → <b>$1 / 50 Robux</b></p>
         <ul>
             <li>✅ VIP role</li>
             <li>🎁 Small in-game bonus</li>
             <li>💬 VIP chat access</li>
         </ul>
-        <span class="buy-btn" onclick="choosePayment('VIP')">BUY VIP</span>
+        <span class="buy-btn" onclick="choosePayment('VIP',50,1)">BUY VIP</span>
     </div>
 
     <!-- SuperVIP -->
     <div class="rank-card supervip">
-        <h2>🌟 SuperVIP — $2</h2>
+        <h2>🌟 SuperVIP — $2 / 100 Robux</h2>
         <p><del>$6 / 300 Robux</del> → <b>$2 / 100 Robux</b></p>
         <ul>
             <li>✅ All VIP perks</li>
             <li>😄 Exclusive emoji</li>
             <li>🎧 Private voice access</li>
         </ul>
-        <span class="buy-btn" onclick="choosePayment('SuperVIP')">BUY SuperVIP</span>
+        <span class="buy-btn" onclick="choosePayment('SuperVIP',100,2)">BUY SuperVIP</span>
     </div>
 
     <!-- Legend -->
     <div class="rank-card legend">
-        <h2>🔥 Legend — $5</h2>
+        <h2>🔥 Legend — $5 / 250 Robux</h2>
         <p><del>$12 / 600 Robux</del> → <b>$5 / 250 Robux</b></p>
         <ul>
             <li>✅ All SuperVIP perks</li>
             <li>🧿 Rare in-game item</li>
             <li>🚀 Early update access</li>
         </ul>
-        <span class="buy-btn" onclick="choosePayment('Legend')">BUY Legend</span>
+        <span class="buy-btn" onclick="choosePayment('Legend',250,5)">BUY Legend</span>
     </div>
 
     <!-- UltraLegend -->
     <div class="rank-card ultralegend">
-        <h2>💎 UltraLegend — $10</h2>
+        <h2>💎 UltraLegend — $10 / 500 Robux</h2>
         <p><del>$20 / 1000 Robux</del> → <b>$10 / 500 Robux</b></p>
         <ul>
             <li>✅ All Legend perks</li>
             <li>🗺️ Exclusive game area</li>
             <li>🏅 Special badge emoji</li>
         </ul>
-        <span class="buy-btn" onclick="choosePayment('UltraLegend')">BUY UltraLegend</span>
+        <span class="buy-btn" onclick="choosePayment('UltraLegend',500,10)">BUY UltraLegend</span>
     </div>
 
     <!-- Supreme -->
     <div class="rank-card supreme">
-        <h2>👑 Supreme — $25</h2>
+        <h2>👑 Supreme — $25 / 1000 Robux</h2>
         <p><del>$40 / 2000 Robux</del> → <b>$25 / 1000 Robux</b></p>
         <ul>
             <li>✅ All UltraLegend perks</li>
             <li>📣 Special shoutouts</li>
             <li>🧪 Access to test updates</li>
         </ul>
-        <span class="buy-btn" onclick="choosePayment('Supreme')">BUY Supreme</span>
+        <span class="buy-btn" onclick="choosePayment('Supreme',1000,25)">BUY Supreme</span>
     </div>
 
     <!-- Discord verify -->
@@ -194,18 +194,20 @@ for(let i=0;i<80;i++){
 }
 
 // ===== PAYMENT POPUP =====
-function choosePayment(rank){
+function choosePayment(rank, robuxPrice, dollarPrice){
     let overlay = document.createElement('div');
     overlay.className = 'popup-overlay';
 
     let box = document.createElement('div');
     box.className = 'popup-box';
     box.innerHTML = `<h2>Buy ${rank}</h2>
-                     <p>Select your payment method:</p>
+                     <p>Select your payment method and note the prices:</p>
                      <ul>
-                        <li>Gamepass / Robux price</li>
-                        <li>PayPal: $${rank==='VIP'?1:rank==='SuperVIP'?2:rank==='Legend'?5:rank==='UltraLegend'?10:25}</li>
+                        <li>💰 PayPal: $${dollarPrice}</li>
+                        <li>🎮 Roblox Gamepass: ${robuxPrice} Robux</li>
                      </ul>
+                     <p>After paying, take a screenshot and return to this page.</p>
+                     <p>Scroll down and click <b>VERIFY PURCHASE ON DISCORD</b> to complete your rank assignment.</p>
                      <button class="paypal" onclick="pay('PayPal','${rank}')">PayPal</button>
                      <button class="robux" onclick="pay('Robux','${rank}')">Robux</button>
                      <br><br>
@@ -246,7 +248,7 @@ function showVerification(){
                      <ol style="text-align:left; margin-left:20px;">
                        <li>Join our Discord server: <a href="https://discord.gg/Ay6EfzjdNn" target="_blank">Click here</a></li>
                        <li>Go to the <b>🛒-rank-shop → 💳-verification</b> channel</li>
-                       <li>Drop a screenshot of your PayPal payment</li>
+                       <li>Drop a screenshot of your payment</li>
                        <li>Wait for staff to assign your Discord rank (VIP / SuperVIP / Legend / UltraLegend / Supreme)</li>
                      </ol>
                      <button class="cancel" onclick="this.parentElement.parentElement.remove()">Close</button>`;
