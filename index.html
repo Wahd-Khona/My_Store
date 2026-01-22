@@ -4,9 +4,86 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Noob's Nations Store</title>
-<link rel="stylesheet" href="styles.css">
+<style>
+/* ===== RESET & BASE ===== */
+* { box-sizing:border-box; margin:0; padding:0; font-family:'Arial',sans-serif; }
+body, html { width:100%; height:100%; background:#0b0b0b; color:#eee; overflow-x:hidden; }
+a { text-decoration:none; }
+
+/* ===== CONTAINER ===== */
+#store {
+    width:100%; max-width:100%; padding:20px; min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+}
+
+/* ===== HEADER ===== */
+h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff4500; margin-bottom:10px; }
+.subtitle { text-align:center; color:#aaa; font-size:1.5vw; margin-bottom:40px; }
+
+/* ===== RANK CARDS ===== */
+.rank-card {
+    background:#1a1a1a; border-radius:15px; margin-bottom:25px; padding:25px;
+    border-left:6px solid; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow:0 0 20px rgba(0,0,0,0.5); width:90%; max-width:800px;
+}
+.rank-card:hover { transform:translateY(-10px); box-shadow:0 0 40px #ff4500; }
+.rank-card h2 { margin:0 0 10px 0; font-size:2vw; }
+.rank-card ul { list-style:none; padding-left:0; font-size:1.2vw; }
+.rank-card ul li { margin:5px 0; }
+
+/* ===== BUTTONS ===== */
+.buy-btn {
+    display:inline-block; margin-top:15px; color:#fff; padding:12px 25px;
+    border-radius:8px; font-weight:bold; background:#ff4500;
+    box-shadow:0 0 15px rgba(255,69,0,0.5); transition: transform 0.2s, box-shadow 0.2s;
+}
+.buy-btn:hover { transform:scale(1.1); box-shadow:0 0 30px #ff4500; }
+
+/* ===== DISCORD VERIFY ===== */
+#discord-btn {
+    display:block; text-align:center; background:#7289da; color:#fff;
+    padding:20px 30px; border-radius:10px; font-weight:bold; margin:30px auto;
+    max-width:350px; box-shadow:0 0 15px rgba(114,137,218,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+#discord-btn:hover { transform:scale(1.05); box-shadow:0 0 25px #7289da; }
+
+/* ===== FOOTER ===== */
+.footer { text-align:center; color:#888; margin-top:50px; font-size:1vw; }
+
+/* ===== RANK COLORS ===== */
+.vip { border-color:#ff0000; }
+.supervip { border-color:#00ff7f; }
+.legend { border-color:#ffa500; }
+.ultralegend { border-color:#1e90ff; }
+.supreme { border-color:#9400d3; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:800px){
+    h1{font-size:6vw;} .subtitle{font-size:3vw;}
+    .rank-card h2{font-size:4vw;} .rank-card ul{font-size:3vw;}
+    .buy-btn{font-size:3vw; padding:10px 15px;}
+    #discord-btn{font-size:3vw; padding:15px 20px;}
+}
+
+/* ===== PARTICLE BACKGROUND ===== */
+#particles {
+    position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;
+    background:#0b0b0b;
+}
+.particle {
+    position:absolute; width:5px; height:5px; border-radius:50%;
+    background:rgba(255,255,255,0.5); animation: float 10s linear infinite;
+}
+@keyframes float { 0% { transform:translateY(0) } 100% { transform:translateY(-110vh) } }
+</style>
 </head>
 <body>
+
+<!-- PARTICLES -->
+<div id="particles"></div>
+
+<!-- STORE -->
 <div id="store">
     <h1>🔥 Noob's Nations Store 🔥</h1>
     <p class="subtitle">Support the game & unlock exclusive perks! Safe payments via PayPal.</p>
@@ -71,11 +148,32 @@
         <a class="buy-btn" href="http://paypal.me/wahdkhona/25" target="_blank">BUY Supreme</a>
     </div>
 
-    <!-- Discord verification -->
+    <!-- Discord verify -->
     <a id="discord-btn" href="YOUR_DISCORD_INVITE" target="_blank">VERIFY PURCHASE ON DISCORD</a>
-
     <p class="footer">💬 DM STAFF IF SOMETHING DIDN'T WORK | ⚠️ Prices may increase anytime</p>
 </div>
-<script src="script.js"></script>
+
+<script>
+// ===== PARTICLES =====
+const particlesContainer = document.getElementById('particles');
+for(let i=0;i<80;i++){
+    let p=document.createElement('div');
+    p.classList.add('particle');
+    p.style.left=Math.random()*100+'%';
+    p.style.top=Math.random()*100+'%';
+    p.style.width=(2+Math.random()*4)+'px';
+    p.style.height=p.style.width;
+    p.style.animationDuration=(5+Math.random()*10)+'s';
+    p.style.background='rgba(255,255,255,'+(0.2+Math.random()*0.5)+')';
+    particlesContainer.appendChild(p);
+}
+
+// ===== Discord button glow =====
+const discordBtn = document.getElementById('discord-btn');
+setInterval(()=>{
+    discordBtn.style.boxShadow = `0 0 20px rgba(114,137,218,${Math.random()})`;
+},500);
+</script>
+
 </body>
 </html>
