@@ -5,97 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Noob's Nations Store</title>
 <style>
-/* ===== RESET & BASE ===== */
 * { box-sizing:border-box; margin:0; padding:0; font-family:'Arial',sans-serif; }
 body, html { width:100%; height:100%; background:#0b0b0b; color:#eee; overflow-x:hidden; }
-a { text-decoration:none; }
+a { text-decoration:none; color:#00bfff; }
 
-/* ===== CONTAINER ===== */
-#store {
-    width:100%; max-width:100%; padding:20px; min-height:100vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
-}
+#store { width:100%; max-width:100%; padding:20px; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; }
 
-/* ===== HEADER ===== */
 h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff4500; margin-bottom:10px; }
-.subtitle { text-align:center; color:#aaa; font-size:1.5vw; margin-bottom:40px; }
+.subtitle { text-align:center; color:#aaa; font-size:1.5vw; margin-bottom:20px; }
 
-/* ===== RANK CARDS ===== */
-.rank-card {
-    background:#1a1a1a; border-radius:15px; margin-bottom:25px; padding:25px;
-    border-left:6px solid; transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow:0 0 20px rgba(0,0,0,0.5); width:90%; max-width:900px;
-}
+.rank-card { background:#1a1a1a; border-radius:15px; margin-bottom:25px; padding:25px; border-left:6px solid; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow:0 0 20px rgba(0,0,0,0.5); width:90%; max-width:900px; }
 .rank-card:hover { transform:translateY(-10px); box-shadow:0 0 40px #ff4500; }
 .rank-card h2 { margin:0 0 10px 0; font-size:2vw; }
 .rank-card ul { list-style:none; padding-left:0; font-size:1.2vw; }
 .rank-card ul li { margin:5px 0; }
 
-/* ===== BUTTONS ===== */
 .buy-btn {
-    display:inline-block; margin-top:15px; color:#fff; padding:18px 40px;
-    border-radius:12px; font-weight:bold; background:linear-gradient(45deg,#ff4500,#ff8c00);
-    box-shadow:0 0 20px rgba(255,69,0,0.8); transition: transform 0.3s, box-shadow 0.3s;
-    cursor:pointer; font-size:1.2vw;
+    display:inline-block; margin-top:15px; color:#fff; padding:18px 50px;
+    border-radius:15px; font-weight:bold; background:linear-gradient(45deg,#ff4500,#ff8c00);
+    box-shadow:0 0 25px rgba(255,69,0,0.8); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; font-size:1.3vw;
 }
-.buy-btn:hover { transform:scale(1.15); box-shadow:0 0 40px #ff4500, 0 0 60px #ff8c00; }
+.buy-btn:hover { transform:scale(1.15); box-shadow:0 0 50px #ff4500, 0 0 70px #ff8c00; }
 
-/* ===== DISCORD VERIFY ===== */
-#discord-btn {
-    display:block; text-align:center; background:#7289da; color:#fff;
-    padding:25px 40px; border-radius:12px; font-weight:bold; margin:30px auto;
-    max-width:400px; box-shadow:0 0 20px rgba(114,137,218,0.7);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-#discord-btn:hover { transform:scale(1.05); box-shadow:0 0 30px #7289da; }
+#discord-btn { display:block; text-align:center; background:#7289da; color:#fff; padding:30px 50px; border-radius:15px; font-weight:bold; margin:30px auto; max-width:450px; box-shadow:0 0 25px rgba(114,137,218,0.7); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; }
+#discord-btn:hover { transform:scale(1.05); box-shadow:0 0 40px #7289da; }
 
-/* ===== FOOTER ===== */
 .footer { text-align:center; color:#888; margin-top:50px; font-size:1vw; }
 
-/* ===== RANK COLORS ===== */
 .vip { border-color:#ff0000; }
 .supervip { border-color:#00ff7f; }
 .legend { border-color:#ffa500; }
 .ultralegend { border-color:#1e90ff; }
 .supreme { border-color:#9400d3; }
 
-/* ===== RESPONSIVE ===== */
 @media(max-width:800px){
     h1{font-size:6vw;} .subtitle{font-size:3vw;}
     .rank-card h2{font-size:4vw;} .rank-card ul{font-size:3vw;}
-    .buy-btn{font-size:3vw; padding:15px 25px;}
-    #discord-btn{font-size:3vw; padding:20px 25px;}
+    .buy-btn{font-size:3vw; padding:15px 30px;}
+    #discord-btn{font-size:3vw; padding:20px 35px;}
 }
 
-/* ===== PARTICLE BACKGROUND ===== */
-#particles {
-    position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;
-    background:#0b0b0b;
-}
-.particle {
-    position:absolute; width:5px; height:5px; border-radius:50%;
-    background:rgba(255,255,255,0.5); animation: float 10s linear infinite;
-}
+#particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background:#0b0b0b; }
+.particle { position:absolute; width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.5); animation: float 10s linear infinite; }
 @keyframes float { 0% { transform:translateY(0) } 100% { transform:translateY(-110vh) } }
 
-/* ===== POPUP ===== */
-.popup-overlay {
-    position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85);
-    display:flex; align-items:center; justify-content:center; z-index:9999;
-}
-.popup-box {
-    background:#1a1a1a; padding:40px; border-radius:20px; text-align:center; max-width:500px; color:#fff;
-    box-shadow:0 0 40px #ff4500, 0 0 60px #ff8c00;
-    transform: translateY(-200px); opacity:0;
-    animation: slideIn 0.5s forwards;
-}
-@keyframes slideIn {
-    to { transform: translateY(0); opacity:1; }
-}
-.popup-box button {
-    margin:12px; padding:15px 35px; border:none; border-radius:12px; font-weight:bold; cursor:pointer;
-    font-size:1vw;
-}
+.popup-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:9999; }
+.popup-box { background:#1a1a1a; padding:40px; border-radius:20px; text-align:center; max-width:500px; color:#fff; box-shadow:0 0 40px #ff4500, 0 0 60px #ff8c00; transform: translateY(-200px); opacity:0; animation: slideIn 0.5s forwards; }
+@keyframes slideIn { to { transform: translateY(0); opacity:1; } }
+.popup-box button { margin:12px; padding:15px 35px; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1vw; }
 .popup-box .cancel { background:#555; color:#fff; }
 .popup-box .paypal { background:linear-gradient(45deg,#ff4500,#ff8c00); color:#fff; }
 .popup-box .robux { background:linear-gradient(45deg,#00ff7f,#00ff9f); color:#000; }
@@ -105,82 +62,54 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
 </head>
 <body>
 
-<!-- PARTICLES -->
 <div id="particles"></div>
 
-<!-- STORE -->
 <div id="store">
     <h1>🔥 Noob's Nations Store 🔥</h1>
     <p class="subtitle">Support the game & unlock exclusive perks! Safe payments via PayPal.</p>
-    <p class="subtitle">Take a screenshot of the payement, and scroll down to the verification to complete the tutorial.</p>
+    <p class="subtitle">Take a screenshot after paying, then scroll down to verify your purchase.</p>
 
-    <!-- VIP -->
     <div class="rank-card vip">
         <h2>🎮 VIP — $1 / 50 Robux</h2>
         <p><del>$3 / 150 Robux</del> → <b>$1 / 50 Robux</b></p>
-        <ul>
-            <li>✅ VIP role</li>
-            <li>🎁 Small in-game bonus</li>
-            <li>💬 VIP chat access</li>
-        </ul>
+        <ul><li>✅ VIP role</li><li>🎁 Small in-game bonus</li><li>💬 VIP chat access</li></ul>
         <span class="buy-btn" onclick="choosePayment('VIP',50,1)">BUY VIP</span>
     </div>
 
-    <!-- SuperVIP -->
     <div class="rank-card supervip">
         <h2>🌟 SuperVIP — $2 / 100 Robux</h2>
         <p><del>$6 / 300 Robux</del> → <b>$2 / 100 Robux</b></p>
-        <ul>
-            <li>✅ All VIP perks</li>
-            <li>😄 Exclusive emoji</li>
-            <li>🎧 Private voice access</li>
-        </ul>
+        <ul><li>✅ All VIP perks</li><li>😄 Exclusive emoji</li><li>🎧 Private voice access</li></ul>
         <span class="buy-btn" onclick="choosePayment('SuperVIP',100,2)">BUY SuperVIP</span>
     </div>
 
-    <!-- Legend -->
     <div class="rank-card legend">
         <h2>🔥 Legend — $5 / 250 Robux</h2>
         <p><del>$12 / 600 Robux</del> → <b>$5 / 250 Robux</b></p>
-        <ul>
-            <li>✅ All SuperVIP perks</li>
-            <li>🧿 Rare in-game item</li>
-            <li>🚀 Early update access</li>
-        </ul>
+        <ul><li>✅ All SuperVIP perks</li><li>🧿 Rare in-game item</li><li>🚀 Early update access</li></ul>
         <span class="buy-btn" onclick="choosePayment('Legend',250,5)">BUY Legend</span>
     </div>
 
-    <!-- UltraLegend -->
     <div class="rank-card ultralegend">
         <h2>💎 UltraLegend — $10 / 500 Robux</h2>
         <p><del>$20 / 1000 Robux</del> → <b>$10 / 500 Robux</b></p>
-        <ul>
-            <li>✅ All Legend perks</li>
-            <li>🗺️ Exclusive game area</li>
-            <li>🏅 Special badge emoji</li>
-        </ul>
+        <ul><li>✅ All Legend perks</li><li>🗺️ Exclusive game area</li><li>🏅 Special badge emoji</li></ul>
         <span class="buy-btn" onclick="choosePayment('UltraLegend',500,10)">BUY UltraLegend</span>
     </div>
 
-    <!-- Supreme -->
     <div class="rank-card supreme">
         <h2>👑 Supreme — $25 / 1000 Robux</h2>
         <p><del>$40 / 2000 Robux</del> → <b>$25 / 1000 Robux</b></p>
-        <ul>
-            <li>✅ All UltraLegend perks</li>
-            <li>📣 Special shoutouts</li>
-            <li>🧪 Access to test updates</li>
-        </ul>
+        <ul><li>✅ All UltraLegend perks</li><li>📣 Special shoutouts</li><li>🧪 Access to test updates</li></ul>
         <span class="buy-btn" onclick="choosePayment('Supreme',1000,25)">BUY Supreme</span>
     </div>
 
-    <!-- Discord verify -->
     <span id="discord-btn" class="buy-btn" onclick="showVerification()">VERIFY PURCHASE ON DISCORD</span>
     <p class="footer">💬 DM STAFF IF SOMETHING DIDN'T WORK | ⚠️ Prices may increase anytime</p>
 </div>
 
 <script>
-// ===== PARTICLES =====
+// PARTICLES
 const particlesContainer = document.getElementById('particles');
 for(let i=0;i<80;i++){
     let p=document.createElement('div');
@@ -194,70 +123,49 @@ for(let i=0;i<80;i++){
     particlesContainer.appendChild(p);
 }
 
-// ===== PAYMENT POPUP =====
+// PAYMENT POPUP
 function choosePayment(rank, robuxPrice, dollarPrice){
     let overlay = document.createElement('div');
-    overlay.className = 'popup-overlay';
-
+    overlay.className='popup-overlay';
     let box = document.createElement('div');
-    box.className = 'popup-box';
+    box.className='popup-box';
     box.innerHTML = `<h2>Buy ${rank}</h2>
-                     <p>Select your payment method and note the prices:</p>
-                     <ul>
-                        <li>💰 PayPal: $${dollarPrice}</li>
-                        <li>🎮 Roblox Gamepass: ${robuxPrice} Robux</li>
-                     </ul>
-                     <p>After paying, take a screenshot and return to this page.</p>
-                     <p>Scroll down and click <b>VERIFY PURCHASE ON DISCORD</b> to complete your rank assignment.</p>
-                     <button class="paypal" onclick="pay('PayPal','${rank}')">PayPal</button>
-                     <button class="robux" onclick="pay('Robux','${rank}')">Robux</button>
-                     <br><br>
-                     <button class="cancel" onclick="this.parentElement.parentElement.remove()">Cancel</button>`;
-    
+        <p>Select payment method:</p>
+        <ul><li>💰 PayPal: $${dollarPrice}</li><li>🎮 Roblox Gamepass: ${robuxPrice} Robux</li></ul>
+        <p>After paying, take a screenshot and return to this page.</p>
+        <p>Scroll down and click <b>VERIFY PURCHASE ON DISCORD</b> to complete your rank.</p>
+        <button class="paypal" onclick="pay('PayPal','${rank}')">PayPal</button>
+        <button class="robux" onclick="pay('Robux','${rank}')">Robux</button><br><br>
+        <button class="cancel" onclick="this.parentElement.parentElement.remove()">Cancel</button>`;
     overlay.appendChild(box);
     document.body.appendChild(overlay);
 }
 
-// ===== PAY FUNCTION =====
+// PAY FUNCTION
 function pay(method, rank){
-    const links = {
-        VIP:'http://paypal.me/wahdkhona/1',
-        SuperVIP:'http://paypal.me/wahdkhona/2',
-        Legend:'http://paypal.me/wahdkhona/5',
-        UltraLegend:'http://paypal.me/wahdkhona/10',
-        Supreme:'http://paypal.me/wahdkhona/25'
-    };
-
-    if(method==='PayPal'){
-        window.open(links[rank],'_blank');
-    } else {
-        alert('Robux purchases must go through Roblox gamepasses. Then DM staff for role.');
-    }
-
-    document.querySelectorAll('.popup-overlay')[0].remove();
+    const links = { VIP:'http://paypal.me/wahdkhona/1', SuperVIP:'http://paypal.me/wahdkhona/2', Legend:'http://paypal.me/wahdkhona/5', UltraLegend:'http://paypal.me/wahdkhona/10', Supreme:'http://paypal.me/wahdkhona/25'};
+    if(method==='PayPal'){ window.open(links[rank],'_blank'); } 
+    else { alert('Robux purchases must go through Roblox gamepasses. Then DM staff for role.'); }
+    const overlay=document.querySelector('.popup-overlay');
+    if(overlay) overlay.remove();
 }
 
-// ===== VERIFICATION POPUP =====
+// VERIFICATION POPUP
 function showVerification(){
-    let overlay = document.createElement('div');
-    overlay.className = 'popup-overlay';
-
-    let box = document.createElement('div');
-    box.className = 'popup-box';
-    box.innerHTML = `<h2>Verify Your Purchase</h2>
-                     <p>After completing your payment, follow these steps:</p>
-                     <ol style="text-align:left; margin-left:20px;">
-                       <li>Join our Discord server: <a href="https://discord.gg/Ay6EfzjdNn" target="_blank">Click here</a></li>
-                       <li>Go to the <b>🛒-rank-shop → 💳-verification</b> channel</li>
-                       <li>Drop a screenshot of your payment</li>
-                       <li>Wait for staff to assign your Discord rank (VIP / SuperVIP / Legend / UltraLegend / Supreme)</li>
-                     </ol>
-                     <button class="cancel" onclick="this.parentElement.parentElement.remove()">Close</button>`;
-    
+    let overlay=document.createElement('div'); overlay.className='popup-overlay';
+    let box=document.createElement('div'); box.className='popup-box';
+    box.innerHTML=`<h2>Verify Your Purchase</h2>
+        <p>After payment, follow these steps:</p>
+        <ol style="text-align:left; margin-left:20px;">
+            <li>Join our Discord server: <a href="https://discord.gg/Ay6EfzjdNn" target="_blank">Click here</a></li>
+            <li>Go to the <b>🛒-rank-shop → 💳-verification</b> channel</li>
+            <li>Drop a screenshot of your payment</li>
+            <li>Wait for staff to assign your Discord rank (VIP / SuperVIP / Legend / UltraLegend / Supreme)</li>
+        </ol>
+        <button class="cancel" onclick="this.parentElement.parentElement.remove()">Close</button>`;
     overlay.appendChild(box);
     document.body.appendChild(overlay);
 }
 </script>
 </body>
 </html>
-
