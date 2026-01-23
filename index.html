@@ -55,7 +55,6 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
 .popup-box button { margin:12px; padding:15px 35px; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1vw; }
 .popup-box .cancel { background:#555; color:#fff; }
 .popup-box .paypal { background:linear-gradient(45deg,#ff4500,#ff8c00); color:#fff; }
-.popup-box .robux { background:linear-gradient(45deg,#00ff7f,#00ff9f); color:#000; }
 .popup-box ul { text-align:left; margin:15px 0; }
 .popup-box ul li { margin:8px 0; }
 </style>
@@ -66,42 +65,67 @@ h1 { text-align:center; color:#ff4500; font-size:3vw; text-shadow:0 0 20px #ff45
 
 <div id="store">
     <h1>🔥 Noob's Nations Store 🔥</h1>
-    <p class="subtitle">Support the game & unlock exclusive perks! Safe payments via PayPal.</p>
+    <p class="subtitle">Support our community & unlock exclusive Discord perks! Safe payments via PayPal.</p>
     <p class="subtitle">Take a screenshot after paying, then scroll down to verify your purchase.</p>
 
     <div class="rank-card vip">
-        <h2>🎮 VIP — $1 / 50 Robux</h2>
-        <p><del>$3 / 150 Robux</del> → <b>$1 / 50 Robux</b></p>
-        <ul><li>✅ VIP role</li><li>🎁 Small in-game bonus</li><li>💬 VIP chat access</li></ul>
-        <span class="buy-btn" onclick="choosePayment('VIP',50,1)">BUY VIP</span>
+        <h2>🎮 VIP — $1</h2>
+        <ul>
+            <li>✅ VIP role in Discord</li>
+            <li>💬 Access to VIP chat</li>
+            <li>🎉 Special monthly surprise</li>
+            <li>🌈 Unique username color</li>
+            <li>🕹️ Priority in community events</li>
+        </ul>
+        <span class="buy-btn" onclick="choosePayment('VIP',1)">BUY VIP</span>
     </div>
 
     <div class="rank-card supervip">
-        <h2>🌟 SuperVIP — $2 / 100 Robux</h2>
-        <p><del>$6 / 300 Robux</del> → <b>$2 / 100 Robux</b></p>
-        <ul><li>✅ All VIP perks</li><li>😄 Exclusive emoji</li><li>🎧 Private voice access</li></ul>
-        <span class="buy-btn" onclick="choosePayment('SuperVIP',100,2)">BUY SuperVIP</span>
+        <h2>🌟 SuperVIP — $2</h2>
+        <ul>
+            <li>✅ All VIP perks</li>
+            <li>😄 Exclusive emoji set</li>
+            <li>🎧 Private voice channel access</li>
+            <li>🏆 Special recognition in server</li>
+            <li>🎲 Early entry to competitions & giveaways</li>
+        </ul>
+        <span class="buy-btn" onclick="choosePayment('SuperVIP',2)">BUY SuperVIP</span>
     </div>
 
     <div class="rank-card legend">
-        <h2>🔥 Legend — $5 / 250 Robux</h2>
-        <p><del>$12 / 600 Robux</del> → <b>$5 / 250 Robux</b></p>
-        <ul><li>✅ All SuperVIP perks</li><li>🧿 Rare in-game item</li><li>🚀 Early update access</li></ul>
-        <span class="buy-btn" onclick="choosePayment('Legend',250,5)">BUY Legend</span>
+        <h2>🔥 Legend — $5</h2>
+        <ul>
+            <li>✅ All SuperVIP perks</li>
+            <li>🧿 Rare community emoji</li>
+            <li>🚀 Early access to events</li>
+            <li>🎙️ Legend-only voice lounge</li>
+            <li>📝 Suggest ideas for server features</li>
+        </ul>
+        <span class="buy-btn" onclick="choosePayment('Legend',5)">BUY Legend</span>
     </div>
 
     <div class="rank-card ultralegend">
-        <h2>💎 UltraLegend — $10 / 500 Robux</h2>
-        <p><del>$20 / 1000 Robux</del> → <b>$10 / 500 Robux</b></p>
-        <ul><li>✅ All Legend perks</li><li>🗺️ Exclusive game area</li><li>🏅 Special badge emoji</li></ul>
-        <span class="buy-btn" onclick="choosePayment('UltraLegend',500,10)">BUY UltraLegend</span>
+        <h2>💎 UltraLegend — $10</h2>
+        <ul>
+            <li>✅ All Legend perks</li>
+            <li>🗺️ Exclusive UltraLegend channels</li>
+            <li>🏅 Unique badge & flair</li>
+            <li>🌟 Recognition in announcements</li>
+            <li>🎶 Access to UltraLegend music & chill channels</li>
+        </ul>
+        <span class="buy-btn" onclick="choosePayment('UltraLegend',10)">BUY UltraLegend</span>
     </div>
 
     <div class="rank-card supreme">
-        <h2>👑 Supreme — $25 / 1000 Robux</h2>
-        <p><del>$40 / 2000 Robux</del> → <b>$25 / 1000 Robux</b></p>
-        <ul><li>✅ All UltraLegend perks</li><li>📣 Special shoutouts</li><li>🧪 Access to test updates</li></ul>
-        <span class="buy-btn" onclick="choosePayment('Supreme',1000,25)">BUY Supreme</span>
+        <h2>👑 Supreme — $25</h2>
+        <ul>
+            <li>✅ All UltraLegend perks</li>
+            <li>📣 Server-wide shoutouts</li>
+            <li>🧪 Priority voting & feature suggestions</li>
+            <li>🎨 Supreme-exclusive art & meme boards</li>
+            <li>🎉 VIP invitations to events & tournaments</li>
+        </ul>
+        <span class="buy-btn" onclick="choosePayment('Supreme',25)">BUY Supreme</span>
     </div>
 
     <span id="discord-btn" class="buy-btn" onclick="showVerification()">VERIFY PURCHASE ON DISCORD</span>
@@ -124,18 +148,17 @@ for(let i=0;i<80;i++){
 }
 
 // PAYMENT POPUP
-function choosePayment(rank, robuxPrice, dollarPrice){
+function choosePayment(rank, dollarPrice){
     let overlay = document.createElement('div');
     overlay.className='popup-overlay';
     let box = document.createElement('div');
     box.className='popup-box';
     box.innerHTML = `<h2>Buy ${rank}</h2>
         <p>Select payment method:</p>
-        <ul><li>💰 PayPal: $${dollarPrice}</li><li>🎮 Roblox Gamepass: ${robuxPrice} Robux</li></ul>
+        <ul><li>💰 PayPal: $${dollarPrice}</li></ul>
         <p>After paying, take a screenshot and return to this page.</p>
         <p>Scroll down and click <b>VERIFY PURCHASE ON DISCORD</b> to complete your rank.</p>
-        <button class="paypal" onclick="pay('PayPal','${rank}')">PayPal</button>
-        <button class="robux" onclick="pay('Robux','${rank}')">Robux</button><br><br>
+        <button class="paypal" onclick="pay('PayPal','${rank}')">PayPal</button><br><br>
         <button class="cancel" onclick="this.parentElement.parentElement.remove()">Cancel</button>`;
     overlay.appendChild(box);
     document.body.appendChild(overlay);
@@ -144,8 +167,7 @@ function choosePayment(rank, robuxPrice, dollarPrice){
 // PAY FUNCTION
 function pay(method, rank){
     const links = { VIP:'http://paypal.me/wahdkhona/1', SuperVIP:'http://paypal.me/wahdkhona/2', Legend:'http://paypal.me/wahdkhona/5', UltraLegend:'http://paypal.me/wahdkhona/10', Supreme:'http://paypal.me/wahdkhona/25'};
-    if(method==='PayPal'){ window.open(links[rank],'_blank'); } 
-    else { alert('Robux purchases must go through Roblox gamepasses. Then DM staff for role.'); }
+    if(method==='PayPal'){ window.open(links[rank],'_blank'); }
     const overlay=document.querySelector('.popup-overlay');
     if(overlay) overlay.remove();
 }
